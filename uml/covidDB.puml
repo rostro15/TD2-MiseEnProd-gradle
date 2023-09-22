@@ -1,0 +1,56 @@
+@startuml Polydoctor
+
+class VaccinationCenter {
+    id: int
+    name: string
+    address: string
+    city: string
+}
+
+class Person {
+    name: string
+    surname: string
+}
+
+class Patient {
+    mail: string
+    birthdate: date
+    address: string
+    city: string
+    postalCode: string
+    phone: string
+}
+
+class Doctor {
+    mail: string
+    speciality: string
+}
+
+class Admin {
+    login: string
+    password: string
+}
+
+class SuperAdmin {
+}
+
+class Rdv {
+    date: Date
+}
+
+'héritage
+Doctor --|> Person
+Patient --|> Person
+Admin --|> Person
+SuperAdmin --|> Admin
+
+'action
+Rdv "*" -- "1" Patient : réserve <
+Doctor "1" -- "*" Rdv : vaccine pendant >
+VaccinationCenter "1" -- "*" Doctor : exerce à >
+
+SuperAdmin "1" -- "*" VaccinationCenter : gère les centres >
+Admin "1" -- "1" VaccinationCenter : gère un centre >
+SuperAdmin "1" -- "*" Admin : gère >
+
+@enduml
