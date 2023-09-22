@@ -1,4 +1,4 @@
-package org.polytech.covid.domain;
+package org.polytech.covid;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
