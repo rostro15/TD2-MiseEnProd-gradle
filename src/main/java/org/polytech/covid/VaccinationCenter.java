@@ -1,4 +1,4 @@
-package org.polytech.covid.domain;
+package org.polytech.covid;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -12,6 +12,8 @@ public class VaccinationCenter {
     private Integer id;
     private String name;
     private String address;
+    private String city;
+    private String postalCode;
 
     
 
