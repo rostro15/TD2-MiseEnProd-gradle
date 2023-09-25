@@ -5,52 +5,86 @@ class VaccinationCenter {
     name: string
     address: string
     city: string
+    'attibuts en private
 }
 
-class Person {
-    name: string
-    surname: string
+class User {
+    login: string
+    password: string
+    mail:string
+    firstname: string
+    lastname: string
+    'attributs en protected et pas en private
+
+}
+
+class Doctor {
+    getPatient()
+    getRdv()
+    validateVaccination()
+}
+class Admin {
+    getAllDoctors()
+    getDoctorByLogin()
+    getDoctorByLastname()
+    getAllRdv()
+    getRdvById()
+    getRdvByDate()
+    createDoctor()
+    modifyDoctor()
+    deleteDoctor()
+    createRdv()
+    modifyRdv()
+    deleteRdv()
+}
+
+Class SuperAdmin{
+    getAllCenters()
+    getCenterById()
+    getCenterByName()
+    getCenterByCity()
+    getAllAdmins()
+    getAdminByLogin()
+    getAdminByLastname()
+    createCenter()
+    deleteCenter()
+    modifyCenter()
+    createAdmin()
+    deleteAdmin()
+    modifyAdmin()
 }
 
 class Patient {
     mail: string
-    birthdate: date
-    address: string
-    city: string
-    postalCode: string
     phone: string
-}
-
-class Doctor {
-    mail: string
-    speciality: string
-}
-
-class Admin {
-    login: string
-    password: string
-}
-
-class SuperAdmin {
+    birthdate: date
+    firstname: string
+    lastname: string
+    carteVitale: file
+    'file upload Sam en charge
+    'attributs en private
+    reserverRdv()
 }
 
 class Rdv {
+    id: number
     date: Date
+    'attributs en private
 }
 
 'héritage
-Doctor --|> Person
-Patient --|> Person
-Admin --|> Person
-SuperAdmin --|> Admin
+Doctor --|> User
+Admin --|> User
+SuperAdmin --|> User
+
 
 'action
 Rdv "*" -- "1" Patient : réserve <
 Doctor "1" -- "*" Rdv : vaccine pendant >
-VaccinationCenter "1" -- "*" Doctor : exerce à >
+VaccinationCenter "*" -- "*" Doctor : exerce à <
 
 SuperAdmin "1" -- "*" VaccinationCenter : gère les centres >
 Admin "1" -- "1" VaccinationCenter : gère un centre >
-SuperAdmin "1" -- "*" Admin : gère >
+SuperAdmin "1" -- "*" User : gère users >
 
 @enduml
