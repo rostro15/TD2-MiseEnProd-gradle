@@ -17,11 +17,11 @@ Patient
 - C public prendre rdv (à voir pour supprimer avec email et date de naissance)
 
 SuperAdmin
-- CRUD gestion des centre
-- CRUD gestion admin
+- CRUD gestion des centres
+- CRUD gestion des admins
 
 Admin
-- CRU gestion medecin
+- CRU gestion des medecins
 - RD gestion réservations du centre
 
 Médecin

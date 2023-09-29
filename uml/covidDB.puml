@@ -81,6 +81,7 @@ SuperAdmin --|> User
 'action
 Rdv "*" -- "1" Patient : réserve <
 Doctor "1" -- "*" Rdv : vaccine pendant >
+Rdv "*" -- "1" VaccinationCenter : a lieu à >
 VaccinationCenter "*" -- "*" Doctor : exerce à <
 
 SuperAdmin "1" -- "*" VaccinationCenter : gère les centres >
