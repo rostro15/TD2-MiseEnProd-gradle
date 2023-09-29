@@ -21,7 +21,20 @@ public class VaccinationCenter {
     @OneToMany(mappedBy = "vaccinationCenter", cascade = {})
     private List<Rdv> rdvs;
 
-    public VaccinationCenter(Integer id, String name, String address, String city, String postalCode) {
+
+
+    public VaccinationCenter() {
+        this.rdvs = new ArrayList<>();
+    }
+
+
+    public VaccinationCenter(
+        Integer id,
+        String name,
+        String address,
+        String city,
+        String postalCode
+    ){ 
         setId(id);
         setName(name);
         setAddress(address);
