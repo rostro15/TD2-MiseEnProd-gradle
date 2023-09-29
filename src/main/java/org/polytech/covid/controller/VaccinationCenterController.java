@@ -22,24 +22,33 @@ public class VaccinationCenterController {
     @Autowired
     private VaccinationCenterService CenterRepository;
 
-    @GetMapping("/api/centers/{cityName}")
+    @GetMapping("/api/public/centers/{cityName}")
     public List<VaccinationCenter> get(@PathVariable String cityName) {
         return CenterRepository.findAllByCity(cityName);
     }
 
-    @GetMapping("/api/centers")
+    @GetMapping("/api/public/centers")
     public List<VaccinationCenter> getAllCenter() {
         return CenterRepository.findAll();
     }
 
-    @PostMapping("/api/centers")
+    @PostMapping("/api/public/centers")
     public ResponseEntity create(@RequestBody VaccinationCenter center) {
         System.out.println(center.getId());
         CenterRepository.addCenter(center);
         return ResponseEntity.status(201).build();
     }
 
-    @PutMapping("/api/centers/{id}")
+    @GetMapping("/api/public/completedb/")
+    public ResponseEntity create(@RequestBody List<VaccinationCenter> centers) {
+        for (VaccinationCenter center : centers) {
+            System.out.println(center.getId());
+            CenterRepository.addCenter(center);
+        }
+        return ResponseEntity.status(201).build();
+    }
+
+    @PutMapping("/api/public/centers/{id}")
     public ResponseEntity update(@PathVariable Integer id, @RequestBody VaccinationCenter center) {
         VaccinationCenter centerToUpdate = CenterRepository.findById(id);
         if (centerToUpdate == null) {
@@ -54,7 +63,7 @@ public class VaccinationCenterController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/api/centers/{id}")
+    @DeleteMapping("/api/public/centers/{id}")
     public ResponseEntity delete(@PathVariable Integer id) {
         VaccinationCenter centerToDelete = CenterRepository.findById(id);
         if (centerToDelete == null) {
