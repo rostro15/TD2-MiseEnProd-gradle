@@ -36,16 +36,6 @@ public class VaccinationCenterController {
         return ResponseEntity.status(201).build();
     }
 
-    @GetMapping("/api/public/completedb/")
-    public ResponseEntity create(@RequestBody List<VaccinationCenter> centers) {
-        for (VaccinationCenter center : centers) {
-            System.out.println(center.getId());
-            CenterRepository.addCenter(center);
-        }
-        return ResponseEntity.status(201).build();
-    }
-
-
     @GetMapping("/api/public/center/{id}")
     public VaccinationCenter get(@PathVariable Integer id) {
         return CenterRepository.findById(id);
