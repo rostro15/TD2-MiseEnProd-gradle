@@ -2,6 +2,7 @@ package org.polytech.covid.domain;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -12,6 +13,9 @@ import java.util.List;
 @Entity
 @Table(name = "doctor")
 public class Doctor extends User {
+
+    @Id
+    private Integer id;
 
     @OneToMany(mappedBy = "doctor", cascade = {})
     private List<Rdv> rdvs;

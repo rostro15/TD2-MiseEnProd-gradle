@@ -15,6 +15,7 @@ import java.util.List;
 public class Patient {
     
     @Id
+    private Integer id;
     private String mail;
     private String phone;
     private String firstName;
