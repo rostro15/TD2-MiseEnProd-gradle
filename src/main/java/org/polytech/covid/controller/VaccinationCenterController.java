@@ -64,8 +64,7 @@ public class VaccinationCenterController {
         }
         CenterRepository.deleteCenter(id);
         return ResponseEntity.ok().build();
-    }
-    
+    }   
 
 
 }

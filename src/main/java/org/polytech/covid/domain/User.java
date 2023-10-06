@@ -11,16 +11,16 @@ public class User {
     protected String password;
     protected String mail;
     protected String phone;
-    protected String firstName;
-    protected String lastName;
+    protected String firstname;
+    protected String lastname;
 
-    public User(String login, String password, String mail, String phone, String firstName, String lastName) {
+    public User(String login, String password, String mail, String phone, String firstname, String lastname) {
         setLogin(login);
         setPassword(password);
         setMail(mail);
         setPhone(phone);
-        setFirstName(firstName);
-        setLastName(lastName);
+        setFirstname(firstname);
+        setLastname(lastname);
     }
 
     // GET
@@ -36,11 +36,11 @@ public class User {
     public String getPhone() {
         return phone;
     }
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
     // SET
@@ -56,11 +56,11 @@ public class User {
     public void setPhone(String phone) {
         this.phone= phone;
     }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
-    public void setLastName(String lastName) {
-        this.lastName= lastName;
+    public void setLastname(String lastname) {
+        this.lastname= lastname;
     }
 
 }
