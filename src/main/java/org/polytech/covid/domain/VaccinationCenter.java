@@ -1,6 +1,7 @@
 package org.polytech.covid.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -13,7 +14,8 @@ import java.util.List;
 public class VaccinationCenter {
 
     @Id
-    private Integer id;
+    @GeneratedValue
+    private long id;
     private String name;
     private String address;
     private String city;
@@ -29,13 +31,11 @@ public class VaccinationCenter {
 
 
     public VaccinationCenter(
-        Integer id,
         String name,
         String address,
         String city,
         String postalCode
     ){ 
-        setId(id);
         setName(name);
         setAddress(address);
         setCity(city);
@@ -44,7 +44,7 @@ public class VaccinationCenter {
     }
 
     // GET
-    public Integer getId() {
+    public long getId() {
         return id;
     }
     public String getName() {

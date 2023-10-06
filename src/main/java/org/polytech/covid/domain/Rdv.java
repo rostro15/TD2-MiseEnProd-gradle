@@ -4,6 +4,7 @@ import java.util.Date;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -13,7 +14,8 @@ import jakarta.persistence.Table;
 public class Rdv {
     
     @Id
-    private Integer id;
+    @GeneratedValue
+    private int id;
     private Date date;
     @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private Patient patient;
@@ -22,8 +24,7 @@ public class Rdv {
     @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private VaccinationCenter vaccinationCenter;
 
-    public Rdv(Integer id, Date date, Patient patient, Doctor doctor, VaccinationCenter vaccinationCenter) {
-        setId(id);
+    public Rdv( Date date, Patient patient, Doctor doctor, VaccinationCenter vaccinationCenter) {
         setDate(date);
         setPatient(patient);
         setDoctor(doctor);
@@ -31,7 +32,7 @@ public class Rdv {
     }
 
     // GET
-    public Integer getId() {
+    public long getId() {
         return id;
     }
     public Date getDate() {

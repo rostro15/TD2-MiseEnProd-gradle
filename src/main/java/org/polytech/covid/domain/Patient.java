@@ -1,6 +1,7 @@
 package org.polytech.covid.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -14,7 +15,8 @@ import java.util.List;
 public class Patient {
     
     @Id
-    private Integer id;
+    @GeneratedValue
+    private long id;
     private String mail;
     private String phone;
     private String firstname;

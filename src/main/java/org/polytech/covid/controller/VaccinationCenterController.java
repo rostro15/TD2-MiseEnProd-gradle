@@ -31,7 +31,6 @@ public class VaccinationCenterController {
 
     @PostMapping("/api/public/center/")
     public ResponseEntity create(@RequestBody VaccinationCenter center) {
-        System.out.println(center.getId());
         CenterRepository.addCenter(center);
         return ResponseEntity.status(201).build();
     }

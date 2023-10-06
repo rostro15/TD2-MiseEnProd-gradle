@@ -1,7 +1,7 @@
 package org.polytech.covid.domain;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -15,7 +15,8 @@ import java.util.List;
 public class Doctor extends User {
 
     @Id
-    private Integer id;
+    @GeneratedValue
+    private long id;
 
     @OneToMany(mappedBy = "doctor", cascade = {})
     private List<Rdv> rdvs;
@@ -29,7 +30,7 @@ public class Doctor extends User {
     public List<Rdv> getRdvs() {
         return rdvs;
     }
-    public Rdv getRdv(Integer id) {
+    public Rdv getRdv(int id) {
         return rdvs.get(id);
     }
 
