@@ -42,31 +42,31 @@ public class Patient {
     
     // GET
     public long getId() {
-        return id;
+        return this.id;
     }
     public String getFirstname() {
-        return firstname;
+        return this.firstname;
     }
     public String getLastname() {
-        return lastname;
+        return this.lastname;
     }
     public String getMail() {
-        return mail;
+        return this.mail;
     }
     public String getPhone() {
-        return phone;
+        return this.phone;
     }
     public Date getBirthdate() {
-        return birthdate;
+        return this.birthdate;
     }
     public Number getNbVaccin() {
-        return nbVaccin;
+        return this.nbVaccin;
     }
     public List<Rdv> getRdvs() {
-        return rdvs;
+        return this.rdvs;
     }
     public Rdv getRdv(Integer id) {
-        return rdvs.get(id);
+        return this.rdvs.get(id);
     }
 
     // SET
