@@ -41,7 +41,7 @@ public class Patient {
     }
     
     // GET
-    public Integer getId() {
+    public long getId() {
         return id;
     }
     public String getFirstname() {
