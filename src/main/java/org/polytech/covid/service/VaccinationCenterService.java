@@ -1,6 +1,10 @@
 package org.polytech.covid.service;
 
 import org.springframework.stereotype.Service;
+
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +18,7 @@ public class VaccinationCenterService {
     
     @Autowired
     private VaccinationCenterRepository CenterRepository;
+    EntityManager entityManager;
 
     public VaccinationCenter findById(Integer id) {
         Optional<VaccinationCenter> center =  CenterRepository.findById(id);
@@ -37,7 +42,9 @@ public class VaccinationCenterService {
         CenterRepository.save(center);
     }
 
+
     public void deleteCenter(Integer id) {
         CenterRepository.deleteById(id);
     }
+
 }
