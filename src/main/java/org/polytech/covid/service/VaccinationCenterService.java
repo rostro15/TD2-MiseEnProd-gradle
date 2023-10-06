@@ -36,9 +36,7 @@ public class VaccinationCenterService {
         return CenterRepository.findAll();
     }
 
-    public void addCenter(VaccinationCenter center) {
-        System.out.println(center.getPostalCode());
-    
+    public void addCenter(VaccinationCenter center) {    
         CenterRepository.save(center);
     }
 

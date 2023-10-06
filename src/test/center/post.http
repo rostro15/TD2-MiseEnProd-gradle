@@ -1,16 +1,14 @@
 POST  http://127.0.0.1:8080/api/public/center/ HTTP/1.1
 Content-Type: application/json
 
-# {
-#     "id":1,
-#     "name":"Center1",
-#     "address":"Address1",
-#     "city":"City1",
-#     "postalCode":"PostalCode1"
-# }
+{
+    "name":"Center1",
+    "address":"Address1",
+    "city":"City1",
+    "postalCode":"PostalCode1"
+}
 
 # {
-#     "id":2,
 #     "name":"Center2",
 #     "address":"Address2",
 #     "city":"City2",
@@ -18,7 +16,6 @@ Content-Type: application/json
 # }
 
 # {
-#     "id":3,
 #     "name":"Center3",
 #     "address":"Address3",
 #     "city":"City3",

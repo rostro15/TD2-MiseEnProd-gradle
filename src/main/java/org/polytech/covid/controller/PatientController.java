@@ -47,7 +47,6 @@ public class PatientController {
         if (patientToUpdate == null) {
             return ResponseEntity.notFound().build();
         }
-
         patientToUpdate.setLastname(patient.getLastname());
         patientToUpdate.setFirstname(patient.getFirstname());
         patientToUpdate.setMail(patient.getMail());
@@ -55,6 +54,7 @@ public class PatientController {
         patientToUpdate.setBirthdate(patient.getBirthdate());
         patientToUpdate.setNbVaccin(patient.getNbVaccin());
         PatientRepository.addPatient(patientToUpdate);
+        
         return ResponseEntity.ok().build();
     }
 

@@ -32,8 +32,6 @@ public class PatientService {
     }
 
     public void addPatient(Patient patient) {
-        System.out.println(patient.getLastname());
-    
         PatientRepository.save(patient);
     }
 
