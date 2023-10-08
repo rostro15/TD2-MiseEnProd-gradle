@@ -1,6 +1,7 @@
 package org.polytech.covid.configuration;
 
 import org.springframework.context.annotation.Configuration;
+import org.polytech.covid.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,19 +30,6 @@ public class SpringSecurityConfig {
             auth.requestMatchers("/user").hasRole("USER");
             auth.anyRequest().authenticated();
         }).formLogin(Customizer.withDefaults()).build();
-    }
-
-    @Bean
-    public UserDetailsService users() {
-        UserDetails user = User.builder()
-                .username("user")
-                .password(passwordEncoder().encode("user"))
-                .roles("USER").build();
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password(passwordEncoder().encode("admin"))
-                .roles("USER", "ADMIN").build();
-        return new InMemoryUserDetailsManager(user, admin);
     }
 
     @Bean

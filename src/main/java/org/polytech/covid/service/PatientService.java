@@ -11,12 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 public class PatientService {
-    
+
     @Autowired
     private PatientRepository PatientRepository;
 
     public Patient findById(Integer id) {
-        Optional<Patient> patient =  PatientRepository.findById(id);
+        Optional<Patient> patient = PatientRepository.findById(id);
         if (patient == null) {
             return null;
         }

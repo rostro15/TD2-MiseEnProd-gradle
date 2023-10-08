@@ -1,4 +1,4 @@
-package org.polytech.covid.configuration;
+package org.polytech.covid.service;
 
 import java.util.ArrayList;
 import java.util.List;

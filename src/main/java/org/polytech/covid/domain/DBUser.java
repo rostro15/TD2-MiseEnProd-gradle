@@ -4,8 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "dbuser")
 public class DBUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,6 +15,16 @@ public class DBUser {
 	private String username;
 	private String password;
 	private String role;
+
+    public DBUser(
+        String username,
+	    String password,
+	    String role
+    ){ 
+        setUsername(username);
+        setPassword(password);
+        setRole(role);
+    }
 
 	public Integer getId() {
 		return id;
@@ -45,5 +57,4 @@ public class DBUser {
 	public void setRole(String role) {
 		this.role = role;
 	}
-
 }
