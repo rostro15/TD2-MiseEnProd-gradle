@@ -1,5 +1,7 @@
 package org.polytech.covid.domain;
 
+import java.util.ArrayList;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +17,9 @@ public class DBUser {
 	private String username;
 	private String password;
 	private String role;
+
+    public DBUser() {
+    }
 
     public DBUser(
         String username,
