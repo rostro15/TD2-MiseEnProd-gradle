@@ -94,6 +94,4 @@ public class Patient {
     public void removeRdv(Rdv rdv) {
         this.rdvs.remove(rdv);
     }
-
-
 }

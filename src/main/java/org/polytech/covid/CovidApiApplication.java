@@ -10,11 +10,6 @@ public class CovidApiApplication {
 		System.out.println("Hello World");
 		SpringApplication.run(CovidApiApplication.class, args);
 	}
-
-
-
-
-
 }
 
 

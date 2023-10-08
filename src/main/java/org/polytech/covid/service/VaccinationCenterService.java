@@ -3,7 +3,6 @@ package org.polytech.covid.service;
 import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityManager;
-import jakarta.transaction.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,7 +38,6 @@ public class VaccinationCenterService {
     public void addCenter(VaccinationCenter center) {    
         CenterRepository.save(center);
     }
-
 
     public void deleteCenter(Integer id) {
         CenterRepository.deleteById(id);

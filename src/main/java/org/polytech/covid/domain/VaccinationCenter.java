@@ -23,12 +23,9 @@ public class VaccinationCenter {
     @OneToMany(mappedBy = "vaccinationCenter", cascade = {})
     private List<Rdv> rdvs;
 
-
-
     public VaccinationCenter() {
         this.rdvs = new ArrayList<>();
     }
-
 
     public VaccinationCenter(
         String name,
@@ -88,8 +85,4 @@ public class VaccinationCenter {
     public void removeRdv(Rdv rdv) {
         this.rdvs.remove(rdv);
     }
-    
-
-    
-
 }

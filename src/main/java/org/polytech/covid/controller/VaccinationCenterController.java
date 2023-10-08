@@ -14,15 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
-
-
 @RestController
 public class VaccinationCenterController {
     
     @Autowired
     private VaccinationCenterService CenterRepository;
-
-    
 
     @GetMapping("/api/public/centers")
     public List<VaccinationCenter> getAllCenter() {
@@ -64,6 +60,4 @@ public class VaccinationCenterController {
         CenterRepository.deleteCenter(id);
         return ResponseEntity.ok().build();
     }   
-
-
 }

@@ -14,15 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
-
-
 @RestController
 public class PatientController {
     
     @Autowired
     private PatientService PatientRepository;
-
-    
 
     @GetMapping("/api/public/patients")
     public List<Patient> getAllPatient() {
@@ -67,6 +63,4 @@ public class PatientController {
         PatientRepository.deletePatient(id);
         return ResponseEntity.ok().build();
     }   
-
-
 }

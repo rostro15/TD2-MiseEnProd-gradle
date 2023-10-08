@@ -2,8 +2,6 @@ package org.polytech.covid.domain;
 
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-
-
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class User {
     

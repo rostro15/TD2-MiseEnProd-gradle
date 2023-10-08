@@ -9,7 +9,6 @@ import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
 @Table(name = "doctor")
 public class Doctor extends User {
@@ -34,7 +33,6 @@ public class Doctor extends User {
         return rdvs.get(id);
     }
 
-
     // SET
     public void addRdv(Rdv rdv) {
         this.rdvs.add(rdv);
@@ -42,6 +40,4 @@ public class Doctor extends User {
     public void removeRdv(Rdv rdv) {
         this.rdvs.remove(rdv);
     }
-
-
 }
