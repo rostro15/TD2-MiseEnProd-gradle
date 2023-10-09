@@ -1,6 +1,9 @@
 package org.polytech.covid.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -11,6 +14,9 @@ import java.util.List;
 @Table(name = "doctor")
 public class Doctor extends DBUser {
 
+    @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
     @OneToMany(mappedBy = "doctor", cascade = {})
     private List<Rdv> rdvs;
@@ -21,6 +27,9 @@ public class Doctor extends DBUser {
     }
 
     // GET
+    public Integer getId() {
+        return this.id;
+    }
     public List<Rdv> getRdvs() {
         return rdvs;
     }

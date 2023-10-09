@@ -1,21 +1,25 @@
 package org.polytech.covid.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.criteria.CriteriaBuilder.In;
 
 @Entity
 @Table(name = "dbuser")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class DBUser {
-    
+
     @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)    
+    protected Integer id;
     protected String username;
     protected String password;
     protected String mail;
@@ -23,6 +27,8 @@ public class DBUser {
     protected String firstname;
     protected String lastname;
     protected String role;
+    @OneToMany(mappedBy = "", cascade = {})
+    private List<Rdv> rdvs;
 
     public DBUser(String username, String password, String mail, String phone, String firstname, String lastname, String role) {
         setUsername(username);
@@ -32,9 +38,13 @@ public class DBUser {
         setFirstname(firstname);
         setLastname(lastname);
         setRole(role);
+        this.rdvs = new ArrayList<>();
     }
 
     // GET
+    public Integer getId() {
+        return this.id;
+    }
     public String getUsername() {
         return this.username;
     }
@@ -55,6 +65,12 @@ public class DBUser {
     }
     public String getRole() {
         return this.role;
+    }
+    public List<Rdv> getRdvs() {
+        return rdvs;
+    }
+    public Rdv getRdv(int id) {
+        return rdvs.get(id);
     }
 
     // SET
@@ -78,6 +94,12 @@ public class DBUser {
     }
     public void setRole(String role) {
         this.role = role;
+    }
+    public void addRdv(Rdv rdv) {
+        this.rdvs.add(rdv);
+    }
+    public void removeRdv(Rdv rdv) {
+        this.rdvs.remove(rdv);
     }
 
 }

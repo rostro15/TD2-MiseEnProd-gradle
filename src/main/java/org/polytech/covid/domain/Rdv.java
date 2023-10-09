@@ -20,14 +20,14 @@ public class Rdv {
     @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private Patient patient;
     @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
-    private Doctor doctor;
+    private DBUser user;
     @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private VaccinationCenter vaccinationCenter;
 
-    public Rdv( Date date, Patient patient, Doctor doctor, VaccinationCenter vaccinationCenter) {
+    public Rdv( Date date, Patient patient, DBUser user, VaccinationCenter vaccinationCenter) {
         setDate(date);
         setPatient(patient);
-        setDoctor(doctor);
+        setDBUser(user);
         setVaccinationCenter(vaccinationCenter);
     }
 
@@ -41,8 +41,8 @@ public class Rdv {
     public Patient getPatient() {
         return patient;
     }
-    public Doctor getDoctor() {
-        return doctor;
+    public DBUser getDBUser() {
+        return this.user;
     }
     public VaccinationCenter getVaccinationCenter() {
         return vaccinationCenter;
@@ -59,8 +59,8 @@ public class Rdv {
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
+    public void setDBUser(DBUser user) {
+        this.user = user;
     }
     public void setVaccinationCenter(VaccinationCenter vaccinationCenter) {
         this.vaccinationCenter = vaccinationCenter;
