@@ -1,8 +1,6 @@
 package org.polytech.covid.domain;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -11,17 +9,14 @@ import java.util.List;
 
 @Entity
 @Table(name = "doctor")
-public class Doctor extends User {
+public class Doctor extends DBUser {
 
-    @Id
-    @GeneratedValue
-    private long id;
 
     @OneToMany(mappedBy = "doctor", cascade = {})
     private List<Rdv> rdvs;
 
-    public Doctor(String login, String password, String mail, String phone, String firstName, String lastName) {
-        super(login, password, mail, phone, firstName, lastName);
+    public Doctor(String username, String password, String mail, String phone, String firstName, String lastName, String role) {
+        super(username, password, mail, phone, firstName, lastName, role);
         this.rdvs = new ArrayList<>();
     }
 

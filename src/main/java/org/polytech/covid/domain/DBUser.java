@@ -1,65 +1,83 @@
 package org.polytech.covid.domain;
 
-import java.util.ArrayList;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "dbuser")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class DBUser {
-	@Id
+    
+    @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String username;
-	private String password;
-	private String role;
+    protected String username;
+    protected String password;
+    protected String mail;
+    protected String phone;
+    protected String firstname;
+    protected String lastname;
+    protected String role;
 
-    public DBUser() {
-    }
-
-    public DBUser(
-        String username,
-	    String password,
-	    String role
-    ){ 
+    public DBUser(String username, String password, String mail, String phone, String firstname, String lastname, String role) {
         setUsername(username);
         setPassword(password);
+        setMail(mail);
+        setPhone(phone);
+        setFirstname(firstname);
+        setLastname(lastname);
         setRole(role);
     }
 
-	public Integer getId() {
-		return id;
-	}
+    // GET
+    public String getUsername() {
+        return this.username;
+    }
+    public String getPassword() {
+        return this.password;
+    }
+    public String getMail() {
+        return this.mail;
+    }
+    public String getPhone() {
+        return this.phone;
+    }
+    public String getFirstname() {
+        return this.firstname;
+    }
+    public String getLastname() {
+        return this.lastname;
+    }
+    public String getRole() {
+        return this.role;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    // SET
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public void setPassword(String password) {
+        this.password= password;
+    }
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+    public void setPhone(String phone) {
+        this.phone= phone;
+    }
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+    public void setLastname(String lastname) {
+        this.lastname= lastname;
+    }
+    public void setRole(String role) {
+        this.role = role;
+    }
 
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
 }
