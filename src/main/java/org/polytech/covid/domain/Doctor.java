@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "doctor")
-public class Doctor extends DBUser {
+public class Doctor extends User {
 
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -14,8 +14,8 @@ import jakarta.persistence.Table;
 import jakarta.persistence.criteria.CriteriaBuilder.In;
 
 @Entity
-@Table(name = "dbuser")
-public class DBUser {
+@Table(name = "user")
+public class User {
 
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)    
@@ -30,7 +30,7 @@ public class DBUser {
     @OneToMany(mappedBy = "", cascade = {})
     private List<Rdv> rdvs;
 
-    public DBUser(String username, String password, String mail, String phone, String firstname, String lastname, String role) {
+    public User(String username, String password, String mail, String phone, String firstname, String lastname, String role) {
         setUsername(username);
         setPassword(password);
         setMail(mail);
