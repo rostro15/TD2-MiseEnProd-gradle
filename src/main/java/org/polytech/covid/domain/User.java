@@ -12,7 +12,10 @@ import jakarta.validation.constraints.Size;
 @Table(name = "users",
        uniqueConstraints = {
            @UniqueConstraint(columnNames = "username"),
-           @UniqueConstraint(columnNames = "email")
+           @UniqueConstraint(columnNames = "email"),
+           @UniqueConstraint(columnNames = "phone"),
+           @UniqueConstraint(columnNames = "firstName"),
+           @UniqueConstraint(columnNames = "lastName")
        })
 public class User {
   @Id
@@ -20,7 +23,7 @@ public class User {
   private Long id;
 
   @NotBlank
-  @Size(max = 20)
+  @Size(min = 3, max = 20)
   private String username;
 
   @NotBlank
@@ -29,7 +32,7 @@ public class User {
   private String email;
 
   @NotBlank
-  @Size(max = 120)
+  @Size(min = 6, max = 40)
   private String password;
 
   @ManyToMany(fetch = FetchType.LAZY)
@@ -38,13 +41,49 @@ public class User {
              inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles = new HashSet<>();
 
+  @NotBlank
+  private String phone;
+
+  @NotBlank
+  private String firstName;
+
+  @NotBlank
+  private String lastName;
+
   public User() {
   }
 
-  public User(String username, String email, String password) {
+  public User(String username, String password, String email, String phone, String firstName, String lastName) {
     this.username = username;
     this.email = email;
     this.password = password;
+    this.phone = phone;
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public String getPhone() {
+    return phone;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
   }
 
   public Long getId() {
