@@ -20,35 +20,35 @@ import jakarta.validation.constraints.Size;
 public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  protected Long id;
 
   @NotBlank
   @Size(min = 3, max = 20)
-  private String username;
+  protected String username;
 
   @NotBlank
   @Size(max = 50)
   @Email
-  private String email;
+  protected String email;
 
   @NotBlank
   @Size(min = 6, max = 40)
-  private String password;
+  protected String password;
 
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(name = "user_roles", 
              joinColumns = @JoinColumn(name = "user_id"),
              inverseJoinColumns = @JoinColumn(name = "role_id"))
-  private Set<Role> roles = new HashSet<>();
+  protected Set<Role> roles = new HashSet<>();
 
   @NotBlank
-  private String phone;
+  protected String phone;
 
   @NotBlank
-  private String firstName;
+  protected String firstName;
 
   @NotBlank
-  private String lastName;
+  protected String lastName;
 
   public User() {
   }

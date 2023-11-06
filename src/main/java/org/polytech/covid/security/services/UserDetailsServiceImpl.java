@@ -12,6 +12,7 @@ import org.polytech.covid.repository.UserRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+
   @Autowired
   UserRepository userRepository;
 

@@ -18,7 +18,7 @@ public class Doctor extends User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-    @OneToMany(mappedBy = "doctor", cascade = {})
+    @OneToMany(mappedBy = "user", cascade = {})
     private List<Rdv> rdvs;
 
     public Doctor(String username, String password, String mail, String phone, String firstName, String lastName) {
