@@ -20,23 +20,23 @@ public class VaccinationCenterController {
     @Autowired
     private VaccinationCenterService CenterRepository;
 
-    @GetMapping("/api/public/centers")
+    @GetMapping("/public/centers")
     public List<VaccinationCenter> getAllCenter() {
         return CenterRepository.findAll();
     }
 
-    @PostMapping("/api/public/center/")
+    @PostMapping("/public/center/")
     public ResponseEntity<?> create(@RequestBody VaccinationCenter center) {
         CenterRepository.addCenter(center);
         return ResponseEntity.status(201).build();
     }
 
-    @GetMapping("/api/public/center/{id}")
+    @GetMapping("/public/center/{id}")
     public VaccinationCenter get(@PathVariable Integer id) {
         return CenterRepository.findById(id);
     }
 
-    @PutMapping("/api/public/center/{id}")
+    @PutMapping("/public/center/{id}")
     public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody VaccinationCenter center) {
         VaccinationCenter centerToUpdate = CenterRepository.findById(id);
         if (centerToUpdate == null) {
@@ -51,7 +51,7 @@ public class VaccinationCenterController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/api/public/center/{id}")
+    @DeleteMapping("/public/center/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         VaccinationCenter centerToDelete = CenterRepository.findById(id);
         if (centerToDelete == null) {

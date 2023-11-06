@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,12 +19,26 @@ public class Patient {
     @Id
     @GeneratedValue
     private long id;
+
+    @NotBlank
+    @Size(max = 50)
     private String mail;
+
+    @NotBlank
     private String phone;
+
+    @NotBlank
     private String firstname;
+
+    @NotBlank
     private String lastname;
+
+    @NotBlank
     private Date birthdate;
+
+    @NotBlank
     private Number nbVaccin;
+
     @OneToMany(mappedBy = "patient", cascade = {})
     private List<Rdv> rdvs;
 

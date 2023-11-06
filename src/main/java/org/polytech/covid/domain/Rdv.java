@@ -16,11 +16,15 @@ public class Rdv {
     @Id
     @GeneratedValue
     private int id;
+
     private Date date;
+
     @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private Patient patient;
+
     @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private User user;
+    
     @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private VaccinationCenter vaccinationCenter;
 
