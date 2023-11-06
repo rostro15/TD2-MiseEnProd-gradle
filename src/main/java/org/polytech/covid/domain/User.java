@@ -1,105 +1,89 @@
 package org.polytech.covid.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.criteria.CriteriaBuilder.In;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users",
+       uniqueConstraints = {
+           @UniqueConstraint(columnNames = "username"),
+           @UniqueConstraint(columnNames = "email")
+       })
 public class User {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)    
-    protected Integer id;
-    protected String username;
-    protected String password;
-    protected String mail;
-    protected String phone;
-    protected String firstname;
-    protected String lastname;
-    protected String role;
-    @OneToMany(mappedBy = "", cascade = {})
-    private List<Rdv> rdvs;
+  @NotBlank
+  @Size(max = 20)
+  private String username;
 
-    public User(String username, String password, String mail, String phone, String firstname, String lastname, String role) {
-        setUsername(username);
-        setPassword(password);
-        setMail(mail);
-        setPhone(phone);
-        setFirstname(firstname);
-        setLastname(lastname);
-        setRole(role);
-        this.rdvs = new ArrayList<>();
-    }
+  @NotBlank
+  @Size(max = 50)
+  @Email
+  private String email;
 
-    // GET
-    public Integer getId() {
-        return this.id;
-    }
-    public String getUsername() {
-        return this.username;
-    }
-    public String getPassword() {
-        return this.password;
-    }
-    public String getMail() {
-        return this.mail;
-    }
-    public String getPhone() {
-        return this.phone;
-    }
-    public String getFirstname() {
-        return this.firstname;
-    }
-    public String getLastname() {
-        return this.lastname;
-    }
-    public String getRole() {
-        return this.role;
-    }
-    public List<Rdv> getRdvs() {
-        return rdvs;
-    }
-    public Rdv getRdv(int id) {
-        return rdvs.get(id);
-    }
+  @NotBlank
+  @Size(max = 120)
+  private String password;
 
-    // SET
-    public void setUsername(String username) {
-        this.username = username;
-    }
-    public void setPassword(String password) {
-        this.password= password;
-    }
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-    public void setPhone(String phone) {
-        this.phone= phone;
-    }
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-    public void setLastname(String lastname) {
-        this.lastname= lastname;
-    }
-    public void setRole(String role) {
-        this.role = role;
-    }
-    public void addRdv(Rdv rdv) {
-        this.rdvs.add(rdv);
-    }
-    public void removeRdv(Rdv rdv) {
-        this.rdvs.remove(rdv);
-    }
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "user_roles", 
+             joinColumns = @JoinColumn(name = "user_id"),
+             inverseJoinColumns = @JoinColumn(name = "role_id"))
+  private Set<Role> roles = new HashSet<>();
 
+  public User() {
+  }
+
+  public User(String username, String email, String password) {
+    this.username = username;
+    this.email = email;
+    this.password = password;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public Set<Role> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(Set<Role> roles) {
+    this.roles = roles;
+  }
 }

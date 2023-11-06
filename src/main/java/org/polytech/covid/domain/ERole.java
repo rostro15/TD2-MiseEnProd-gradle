@@ -1,5 +1,7 @@
 package org.polytech.covid.domain;
 
-public class ERole {
-    
+public enum ERole {
+  ROLE_MEDECIN,
+  ROLE_ADMIN,
+  ROLE_SUPERADMIN
 }
