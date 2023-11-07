@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface PatientRepository extends JpaRepository<Patient, Integer> {
     
-    List<Patient> findAllByMail(String mail);
+    List<Patient> findAllByEmail(String email);
     List<Patient> findAllByPhone(String phone);
     List<Patient> findAllByFirstname(String firstname);
     List<Patient> findAllByLastname(String lastname);
