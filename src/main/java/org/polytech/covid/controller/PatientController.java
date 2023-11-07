@@ -45,7 +45,7 @@ public class PatientController {
         }
         patientToUpdate.setLastname(patient.getLastname());
         patientToUpdate.setFirstname(patient.getFirstname());
-        patientToUpdate.setMail(patient.getMail());
+        patientToUpdate.setEmail(patient.getEmail());
         patientToUpdate.setPhone(patient.getPhone());
         patientToUpdate.setBirthdate(patient.getBirthdate());
         patientToUpdate.setNbVaccin(patient.getNbVaccin());

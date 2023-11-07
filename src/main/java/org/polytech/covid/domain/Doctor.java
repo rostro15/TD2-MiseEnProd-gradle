@@ -21,8 +21,8 @@ public class Doctor extends User {
     @OneToMany(mappedBy = "user", cascade = {})
     private List<Rdv> rdvs;
 
-    public Doctor(String username, String password, String mail, String phone, String firstName, String lastName) {
-        super(username, password, mail, phone, firstName, lastName);
+    public Doctor(String username, String password, String email, String phone, String firstName, String lastName) {
+        super(username, password, email, phone, firstName, lastName);
         this.rdvs = new ArrayList<>();
     }
 

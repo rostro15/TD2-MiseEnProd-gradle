@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -14,7 +15,11 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "patient")
+@Table(name = "patient", 
+       uniqueConstraints = {
+           @UniqueConstraint(columnNames = "email"),
+           @UniqueConstraint(columnNames = "phone")
+       })
 public class Patient {
     
     @Id  
@@ -23,7 +28,7 @@ public class Patient {
 
     @NotBlank
     @Size(max = 50)
-    private String mail;
+    private String email;
 
     @NotBlank
     private String phone;
@@ -47,10 +52,10 @@ public class Patient {
         this.rdvs = new ArrayList<>();
     }
 
-    public Patient(String firstname, String lastname, String mail, String phone, Date birthdate, Number nbVaccin) {
+    public Patient(String firstname, String lastname, String email, String phone, Date birthdate, Number nbVaccin) {
         setFirstname(firstname);
         setLastname(lastname);
-        setMail(mail);
+        setEmail(email);
         setPhone(phone);
         setBirthdate(birthdate);
         setNbVaccin(nbVaccin);
@@ -67,8 +72,8 @@ public class Patient {
     public String getLastname() {
         return this.lastname;
     }
-    public String getMail() {
-        return this.mail;
+    public String getEmail() {
+        return this.email;
     }
     public String getPhone() {
         return this.phone;
@@ -93,8 +98,8 @@ public class Patient {
     public void setLastname(String lastname) {
         this.lastname= lastname;
     }
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
     public void setPhone(String phone) {
         this.phone= phone;
