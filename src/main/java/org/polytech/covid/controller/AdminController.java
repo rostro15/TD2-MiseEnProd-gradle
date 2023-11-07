@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/test")
-public class TestController {
-  @GetMapping("/all")
+@RequestMapping("/admin")
+public class AdminController {
+  @GetMapping("/test")
   public String allAccess() {
-    return "Public Content.";
+    return "Test Content.";
   }
 
-  @GetMapping("/admin")
+  @GetMapping("/board")
   @PreAuthorize("hasRole('SUPERADMIN')")
   public String adminAccess() {
     return "Admin Board.";

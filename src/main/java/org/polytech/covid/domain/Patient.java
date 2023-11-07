@@ -2,6 +2,7 @@ package org.polytech.covid.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -16,9 +17,9 @@ import java.util.List;
 @Table(name = "patient")
 public class Patient {
     
-    @Id
-    @GeneratedValue
-    private long id;
+    @Id  
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotBlank
     @Size(max = 50)
@@ -57,7 +58,7 @@ public class Patient {
     }
     
     // GET
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
     public String getFirstname() {
