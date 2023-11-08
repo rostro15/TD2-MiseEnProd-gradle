@@ -2,6 +2,7 @@ package org.polytech.covid.controller;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -10,6 +11,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.polytech.covid.domain.ERole;
 import org.polytech.covid.domain.Role;
 import org.polytech.covid.domain.User;
+import org.polytech.covid.payload.request.EditRequest;
 import org.polytech.covid.payload.request.LoginRequest;
 import org.polytech.covid.payload.request.SignupRequest;
 import org.polytech.covid.payload.response.JwtResponse;
@@ -81,6 +84,25 @@ public class AuthController {
   public ResponseEntity<?> signoutUser() {
     ResponseEntity.status(200);
     return ResponseEntity.ok(new MessageResponse("L'utilisateur a été déconnecté avec succès !"));
+  }
+
+  @PostMapping("/edit")
+  public ResponseEntity<?> editUser(@Valid @RequestBody EditRequest editRequest) {
+
+    Optional<User> profileToEdit;
+
+    if (!userRepository.existsByUsername(editRequest.getUsername())) {
+      return ResponseEntity
+          .badRequest()
+          .body(new MessageResponse("Le nom d'utilisateur d'un compte ne peut pas être modifié, et le nom d'utilisateur spécifié ne correspond à aucun compte existant."));
+    } 
+
+    Authentication authentication = authenticationManager.authenticate(
+        new UsernamePasswordAuthenticationToken(editRequest.getUsername(), editRequest.getPassword()));
+
+    profileToEdit = userRepository.findByUsername(editRequest.getUsername());
+
+    return ResponseEntity.ok(new MessageResponse("Le compte utilisateur a été modifié avec succès !"));
   }
 
   @PostMapping("/signup")
