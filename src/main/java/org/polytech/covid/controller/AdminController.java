@@ -2,20 +2,30 @@ package org.polytech.covid.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/admin")
 public class AdminController {
-  @GetMapping("/test")
+  @GetMapping("/public/all")
   public String allAccess() {
-    return "Test Content.";
+    return "Public content.";
   }
 
-  @GetMapping("/board")
-  @PreAuthorize("hasRole('SUPERADMIN')")
+  @GetMapping("/admin/doctorboard")
+  @PreAuthorize("hasRole('DOCTOR')")
+  public String userAccess() {
+    return "Doctor board.";
+  }
+
+  @GetMapping("/admin/adminboard")
+  @PreAuthorize("hasRole('ADMIN')")
   public String adminAccess() {
     return "Admin Board.";
+  }
+
+  @GetMapping("/admin/superadminboard")
+  @PreAuthorize("hasRole('SUPERADMIN')")
+  public String superAdminAccess() {
+    return "Super admin Board.";
   }
 }

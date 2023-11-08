@@ -68,7 +68,11 @@ public class AuthController {
                          userDetails.getId(), 
                          userDetails.getUsername(), 
                          userDetails.getEmail(), 
-                         roles));
+                         roles,
+                         userDetails.getFirstName(), 
+                         userDetails.getLastName(), 
+                         userDetails.getPhone()
+                         ));
   }
 
   @GetMapping("/signout")

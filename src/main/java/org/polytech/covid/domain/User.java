@@ -13,9 +13,7 @@ import jakarta.validation.constraints.Size;
        uniqueConstraints = {
            @UniqueConstraint(columnNames = "username"),
            @UniqueConstraint(columnNames = "email"),
-           @UniqueConstraint(columnNames = "phone"),
-           @UniqueConstraint(columnNames = "firstName"),
-           @UniqueConstraint(columnNames = "lastName")
+           @UniqueConstraint(columnNames = "phone")
        })
 public class User {
   @Id
