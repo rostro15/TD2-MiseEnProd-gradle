@@ -71,7 +71,9 @@ public class AuthController {
                          roles,
                          userDetails.getFirstName(), 
                          userDetails.getLastName(), 
-                         userDetails.getPhone()
+                         userDetails.getPhone(),
+                         userDetails.getCreatedOn(),
+                         userDetails.getLastModifiedOn()
                          ));
   }
 
