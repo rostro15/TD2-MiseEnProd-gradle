@@ -2,7 +2,6 @@ package org.polytech.covid.controller;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,7 +10,6 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -67,6 +65,8 @@ public class AuthController {
         .map(item -> item.getAuthority())
         .collect(Collectors.toList());
 
+    System.out.println(roles);
+
     return ResponseEntity.ok(new JwtResponse(jwt, 
                          userDetails.getId(), 
                          userDetails.getUsername(), 
@@ -89,18 +89,37 @@ public class AuthController {
   @PostMapping("/edit")
   public ResponseEntity<?> editUser(@Valid @RequestBody EditRequest editRequest) {
 
-    Optional<User> profileToEdit;
-
     if (!userRepository.existsByUsername(editRequest.getUsername())) {
       return ResponseEntity
           .badRequest()
           .body(new MessageResponse("Le nom d'utilisateur d'un compte ne peut pas être modifié, et le nom d'utilisateur spécifié ne correspond à aucun compte existant."));
     } 
 
-    Authentication authentication = authenticationManager.authenticate(
-        new UsernamePasswordAuthenticationToken(editRequest.getUsername(), editRequest.getPassword()));
+    User profileToEdit;
 
     profileToEdit = userRepository.findByUsername(editRequest.getUsername());
+
+    if(!editRequest.getEmail().equals("")){
+      profileToEdit.setEmail(editRequest.getEmail());
+    }
+
+    if(!editRequest.getPhone().equals("")){
+      profileToEdit.setPhone(editRequest.getPhone());
+    }
+
+    if(!editRequest.getPassword().equals("")){ 
+      profileToEdit.setPassword(encoder.encode(editRequest.getPassword()));
+    } 
+
+    if(!editRequest.getFirstName().equals("")){ 
+      profileToEdit.setFirstName(editRequest.getFirstName());
+    }
+
+    if(!editRequest.getLastName().equals("")){ 
+      profileToEdit.setLastName(editRequest.getLastName());
+    }
+
+    userRepository.save(profileToEdit);
 
     return ResponseEntity.ok(new MessageResponse("Le compte utilisateur a été modifié avec succès !"));
   }
