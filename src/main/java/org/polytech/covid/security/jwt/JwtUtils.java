@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
-
+import org.springframework.util.StringUtils;
 import org.polytech.covid.security.services.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
@@ -60,6 +60,14 @@ public class JwtUtils {
     }
 
     return false;
+  }
+
+  public String getJwtFromHeader(String headerAuth) {
+    String jwt = null;
+    if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
+      jwt = headerAuth.substring(7);
+    }
+    return jwt;
   }
 
 }
