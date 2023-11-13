@@ -1,0 +1,27 @@
+version: '3'
+services:
+  gradle:
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      db:
+          condition: service_healthy
+  db:
+    image: postgres:13.2
+    hostname: db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    restart: always
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U postgres -d postgres'"]
+      interval: 4s
+      timeout: 2s
+      retries: 2
+
+volumes:
+  postgres-data:
