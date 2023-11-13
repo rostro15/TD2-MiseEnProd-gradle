@@ -9,12 +9,14 @@ import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -86,6 +88,55 @@ public class AuthController {
     ResponseEntity.status(200);
     return ResponseEntity.ok(new MessageResponse("L'utilisateur a été déconnecté avec succès !"));
   }
+
+  @PreAuthorize("hasRole('SUPERADMIN')")
+  @PostMapping("/edit/{id}")
+  public ResponseEntity<?> editUserById(@Valid @RequestBody EditRequest editRequest, @PathVariable Long id) {
+
+    User user = userRepository.getReferenceById(id);
+
+
+    if(!editRequest.getUsername().equals(user.getUsername())){
+      return ResponseEntity
+          .badRequest()
+          .body(new MessageResponse("Le nom d'utilisateur spécifié ne correspond pas à la route"));
+    }
+
+    if (!userRepository.existsByUsername(editRequest.getUsername())) {
+      return ResponseEntity
+          .badRequest()
+          .body(new MessageResponse("Le nom d'utilisateur d'un compte ne peut pas être modifié, et le nom d'utilisateur spécifié ne correspond à aucun compte existant."));
+    } 
+
+    User profileToEdit;
+
+    profileToEdit = userRepository.findByUsername(editRequest.getUsername());
+
+    if(!editRequest.getEmail().equals("")){
+      profileToEdit.setEmail(editRequest.getEmail());
+    }
+
+    if(!editRequest.getPhone().equals("")){
+      profileToEdit.setPhone(editRequest.getPhone());
+    }
+
+    if(!editRequest.getPassword().equals("")){ 
+      profileToEdit.setPassword(encoder.encode(editRequest.getPassword()));
+    } 
+
+    if(!editRequest.getFirstName().equals("")){ 
+      profileToEdit.setFirstName(editRequest.getFirstName());
+    }
+
+    if(!editRequest.getLastName().equals("")){ 
+      profileToEdit.setLastName(editRequest.getLastName());
+    }
+
+    userRepository.save(profileToEdit);
+
+    return ResponseEntity.ok(new MessageResponse("Le compte utilisateur a été modifié avec succès !"));
+  }
+
 
   @PostMapping("/edit")
   public ResponseEntity<?> editUser(@Valid @RequestBody EditRequest editRequest, @RequestHeader("Authorization") String headerAuth) {
