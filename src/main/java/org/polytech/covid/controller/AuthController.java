@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -87,7 +88,17 @@ public class AuthController {
   }
 
   @PostMapping("/edit")
-  public ResponseEntity<?> editUser(@Valid @RequestBody EditRequest editRequest) {
+  public ResponseEntity<?> editUser(@Valid @RequestBody EditRequest editRequest, @RequestHeader("Authorization") String headerAuth) {
+
+
+    String jwt = jwtUtils.getJwtFromHeader(headerAuth);
+    String username = jwtUtils.getUserNameFromJwtToken(jwt);
+
+    if(!editRequest.getUsername().equals(username)){
+      return ResponseEntity
+          .status(403)
+          .body(new MessageResponse("Le nom d'utilisateur spécifié ne correspond pas à l'utilisateur connecté."));
+    }
 
     if (!userRepository.existsByUsername(editRequest.getUsername())) {
       return ResponseEntity
