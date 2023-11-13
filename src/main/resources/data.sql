@@ -12,3 +12,5 @@ INSERT INTO user_roles(role_id, user_id) VALUES ('2', '2');
 
 INSERT INTO users(created_on, last_modified_on, email, first_name, last_name, password, phone, username, dtype) VALUES ('2023-11-11 15:07:42.967', '2023-11-11 15:07:42.967', 'superadmin@mail.com', 'Michel', 'LeSuperAdmin', '$2a$10$G6Ls1GJ2jO5haXcNxokGnOV/aklGUP9BNd6FxoV.NUGSbR3XVCqkW', '333333333', 'superadmin', 'User');
 INSERT INTO user_roles(role_id, user_id) VALUES ('3', '3');
+
+INSERT INTO user_centers(center_id, user_id) VALUES ('1', '1');

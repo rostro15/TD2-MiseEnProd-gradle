@@ -44,6 +44,13 @@ public class User {
              inverseJoinColumns = @JoinColumn(name = "role_id"))
   protected Set<Role> roles = new HashSet<>();
 
+
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "user_centers", 
+             joinColumns = @JoinColumn(name = "user_id"),
+             inverseJoinColumns = @JoinColumn(name = "center_id"))
+  protected Set<VaccinationCenter> associatedCenters = new HashSet<>();
+
   @NotBlank
   protected String phone;
 
@@ -147,5 +154,13 @@ public class User {
 
   public void setRoles(Set<Role> roles) {
     this.roles = roles;
+  }
+
+  public Set<VaccinationCenter> getAssociatedCenters() {
+    return associatedCenters;
+  }
+
+  public void setAssociatedCenters(Set<VaccinationCenter> associatedCenters) {
+    this.associatedCenters = associatedCenters;
   }
 }
