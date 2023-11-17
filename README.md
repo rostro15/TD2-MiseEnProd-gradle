@@ -1,33 +1,56 @@
 # Polydoctor
 
 ## Description
-Polydoctor `v0.1 alpha` - Projet fullstack 5A 
 
 ## Installation
-```
-git clone https://gitlab.univ-lorraine.fr/dittedes1u/polydoctor.git
-```
 
-```
-cd polydoctor
+```sh
+git clone https://github.com/rostro15/TD2-MiseEnProd-gradle.git
+cd TD2-MiseEnProd-gradle
 ```
 
-## Comptes par défaut
+### build en local
 
-### Docteur : 
+```sh
+./gradlew build
+```
 
-- username : doctor
-- password : doctormdp
+>le fichier se trouve est genéré ici `./build/libs/covid-api-0.0.1-SNAPSHOT.jar`
 
-### Admin : 
+### demarage via docker en local
 
-- username : admin
-- password : doctormdp
+```sh
+docker compose up -d
+```
 
-### Super admin : 
+>le site est accessible ici <http://localhost:8080/>
 
-- username : superadmin
-- password : doctormdp
+
+### automatisation de la mise a jour de l'image via Jenkins
+
+```groovy
+node {
+    def dockerImage
+    
+        stage('Build') {
+                // Get some code from a GitHub repository
+                git branch: 'main', url: 'https://github.com/rostro15/TD2-MiseEnProd-gradle'
+                dockerImage = docker.build("rostro15/mise_en_prod_td2_graddle")
+        }
+                
+        stage('Deploy Image'){
+                docker.withRegistry('https://registry.hub.docker.com', 'cred-docker-hub') {
+                    dockerImage.push('latest')
+                }
+        }
+}
+```
+>lien de l'image sur docker hub <https://hub.docker.com/repository/docker/heatsinkru/polydoctor-backend/general>
+
+## test du fonctionnement
+
+ <http://localhost:8080/public/centers> doit retourner un JSON
+
 
 ## Authors and acknowledgment
 `Samuel DITTE-DESTRÉE`
