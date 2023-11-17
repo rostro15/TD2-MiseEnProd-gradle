@@ -1,0 +1,4 @@
+TD2-MiseEnProd-frontend/
+uml/
+docker-compose.yaml
+docker-compose-no-front.yaml

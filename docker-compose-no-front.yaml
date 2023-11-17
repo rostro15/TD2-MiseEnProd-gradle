@@ -22,12 +22,6 @@ services:
       interval: 4s
       timeout: 2s
       retries: 2
-  front:
-    build: ./TD2-MiseEnProd-frontend/
-    ports:
-      - 4200:4200
-    depends_on:
-      - gradle
 
 volumes:
   postgres-data:
