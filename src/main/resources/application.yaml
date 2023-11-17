@@ -15,5 +15,5 @@ spring:
     init.mode: always
     init.data-locations: classpath:data.sql
 
-polytech.covid.app.jwtSecret: 
+polytech.covid.app.jwtSecret: ceciEstUnSecretSuperSecretEtSurtoutTresLongCarSinonCestPasDrole
 polytech.covid.app.jwtExpirationMs: 86400000
