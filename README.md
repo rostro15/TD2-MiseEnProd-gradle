@@ -1,6 +1,4 @@
-# Polydoctor
-
-## Description
+# Polydoctor mise en production
 
 ## Installation
 
@@ -42,7 +40,7 @@ docker compose -f docker-compose-no-front.yaml up -d
 
 >l'api est accessible ici <http://localhost:8080/>
 
-### automatisation de la mise a jour de l'image via Jenkins
+### automatisation de la mise a jour des images via Jenkins
 
 ```groovy
 node {
@@ -50,13 +48,11 @@ node {
     def dockerImageFront
     
         stage('Build back') {
-                // Get some code from a GitHub repository
                 git branch: 'main', url: 'https://github.com/rostro15/TD2-MiseEnProd-gradle'
-                dockerdockerImageBackImage = docker.build("rostro15/mise_en_prod_td2_graddle")
+                dockerImageBack = docker.build("rostro15/mise_en_prod_td2_graddle")
         }
 
         stage('Build front') {
-                // Get some code from a GitHub repository
                 git branch: 'main', url: 'https://github.com/rostro15/TD2-MiseEnProd-frontend'
                 dockerImageFront = docker.build("rostro15/mise_en_prod_td2_frontend")
         }
@@ -70,13 +66,17 @@ node {
 }
 ```
 
->lien de l'image sur docker hub <https://hub.docker.com/repository/docker/heatsinkru/polydoctor-backend/general>
+>lien des image sur docker hub sont <https://hub.docker.com/repository/docker/rostro15/mise_en_prod_td2_graddle/general> et <https://hub.docker.com/repository/docker/rostro15/mise_en_prod_td2_frontend/general>
 
-## test du fonctionnement
+## test du fonctionnement du backend seul
 
  <http://localhost:8080/public/centers> doit retourner un JSON
 
-## Authors and acknowledgment
+## Auteur mise en production
+
+`Theo RUSINOWITCH`
+
+## Auteurs du backend et du frontend
 
 `Samuel DITTE-DESTRÉE`
 `Theo RUSINOWITCH`
